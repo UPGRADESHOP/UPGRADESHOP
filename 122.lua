@@ -283,13 +283,13 @@ local Dropdown
 
 local function UpdateDropdownValues()
     if Dropdown then
-        Dropdown:SetValues(nexus)
+        Dropdown:SetValues(DACKSHOP)
     end
 end
 local function RemovePlayer(player)
-    for i, playerName in ipairs(nexus) do
+    for i, playerName in ipairs(DACKSHOP) do
         if playerName == player.Name then
-            table.remove(nexus, i)
+            table.remove(DACKSHOP, i)
             updatedPlayers[player] = nil
             UpdateDropdownValues()
             break
@@ -304,10 +304,10 @@ task.spawn(function()
     while wait() do 
         for _, player in ipairs(game.Players:GetPlayers()) do
             player.Chatted:Connect(function(msg)
-                if msg == "nexus-is-back" and not updatedPlayers[player] then
-                    if not table.find(nexus, player.Name) and player ~= game.Players.LocalPlayer then
+                if msg == "DACKSHOP-is-back" and not updatedPlayers[player] then
+                    if not table.find(DACKSHOP, player.Name) and player ~= game.Players.LocalPlayer then
                         local playerNameWithoutUnderscores = player.Name:gsub("_", "")
-                        table.insert(nexus, playerNameWithoutUnderscores)
+                        table.insert(DACKSHOP, playerNameWithoutUnderscores)
                         print("Detected:", playerNameWithoutUnderscores)
                         updatedPlayers[player] = true  
                         UpdateDropdownValues() 
